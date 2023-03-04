@@ -5,4 +5,5 @@ tsconfig.json
 .changeset
 .turbo
 .github
+.vscode
 turbo.json
