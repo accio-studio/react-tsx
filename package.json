@@ -10,8 +10,7 @@
     "dev": "vitest",
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "lint": "tsc && rome check --apply-suggested . && rome format --write .",
-    "ci": "rome ci .",
-    "release": "turbo build lint ci test && changeset publish"
+    "release": "turbo build lint test && changeset publish"
   },
   "repository": {
     "type": "git",

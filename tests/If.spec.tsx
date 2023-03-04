@@ -8,7 +8,7 @@ describe("<If />", () => {
     const wrapper = render(
       <div data-testid="if">
         <If test={condition}>A</If>
-      </div>
+      </div>,
     );
     expect(wrapper).toBeTruthy();
     expect(screen.getByTestId("if")).toMatchInlineSnapshot(`
@@ -21,7 +21,7 @@ describe("<If />", () => {
   });
   test("If show function-as-a-chidren if condition is truthy", () => {
     const condition = { test: "Truthy" };
-    const wrapper = render(
+    render(
       <div data-testid="if">
         <If test={condition}>
           {(res) => {
@@ -29,9 +29,8 @@ describe("<If />", () => {
             return <>{res.test}</>;
           }}
         </If>
-      </div>
+      </div>,
     );
-
     expect(screen.getByTestId("if")).toMatchInlineSnapshot(`
       <div
         data-testid="if"
