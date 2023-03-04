@@ -7,7 +7,7 @@ describe("<If />", () => {
     const wrapper = render(
       <div data-testid="if">
         <If test={true}>A</If>
-      </div>
+      </div>,
     );
     expect(wrapper).toBeTruthy();
     expect(screen.getByTestId("if")).toMatchInlineSnapshot(`
