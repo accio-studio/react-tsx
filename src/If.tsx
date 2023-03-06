@@ -4,10 +4,7 @@ type Props<T> = {
   test: T;
 } & (
   | {
-      then:
-        | React.ReactNode
-        | Array<React.ReactNode>
-        | ((arg: NonNullable<T>) => React.ReactNode);
+      then: React.ReactNode | Array<React.ReactNode> | ((arg: NonNullable<T>) => React.ReactNode);
       else?: React.ReactNode | Array<React.ReactNode>;
     }
   | {
@@ -50,17 +47,8 @@ type Props<T> = {
  * @see https://github.com/accio-studio/react-tsx
  */
 export function If<T extends unknown>(props: Props<T>): JSX.Element {
-  if (
-    !(
-      "then" in props ||
-      "else" in props ||
-      "children" in props ||
-      "fallback" in props
-    )
-  ) {
-    throw new Error(
-      "If component must have at least one child or `then` / `else` props"
-    );
+  if (!("then" in props || "else" in props || "children" in props || "fallback" in props)) {
+    throw new Error("If component must have at least one child or `then` / `else` props");
   }
 
   if ("then" in props) {
@@ -79,9 +67,7 @@ export function If<T extends unknown>(props: Props<T>): JSX.Element {
     return <>{null}</>;
   }
 
-  const children = Array.isArray(props.children)
-    ? props.children
-    : [props.children];
+  const children = Array.isArray(props.children) ? props.children : [props.children];
 
   if (children.length > 2) {
     throw new Error("If component must have at most two children");
@@ -100,7 +86,7 @@ export function If<T extends unknown>(props: Props<T>): JSX.Element {
           if (props.test && index === 0) return child;
           if (!props.test && index === 1) return child;
           return null;
-        }
+        },
       )}
     </>
   );

@@ -9,7 +9,7 @@ describe("<If /> with children", () => {
       <If test={{}}>
         <div>A</div>
         <div>B</div>
-      </If>
+      </If>,
     );
     expect(truthy).toMatchInlineSnapshot('"<div>A</div>"');
   });
@@ -18,7 +18,7 @@ describe("<If /> with children", () => {
       <If test={null}>
         <div>A</div>
         <div>B</div>
-      </If>
+      </If>,
     );
     expect(falsy).toMatchInlineSnapshot('"<div>B</div>"');
   });
@@ -31,7 +31,7 @@ describe("<If /> with children", () => {
           return <div>{res.test}</div>;
         }}
         <div>B</div>
-      </If>
+      </If>,
     );
     expect(truthy).toMatchInlineSnapshot('"<div>A</div>"');
   });
@@ -43,7 +43,7 @@ describe("<If /> with children", () => {
           return <div>{res.test}</div>;
         }}
         <div>B</div>
-      </If>
+      </If>,
     );
     expect(truthy).toMatchInlineSnapshot('"<div>B</div>"');
   });
@@ -52,15 +52,13 @@ describe("<If /> with children", () => {
     render(
       <ErrorBoundary
         fallbackRender={(error) => {
-          expect(error.message).toBe(
-            "If component must have at least one child or `then` / `else` props"
-          );
+          expect(error.message).toBe("If component must have at least one child or `then` / `else` props");
           return null;
         }}
       >
         {/* @ts-expect-error - If throw error when there is no children */}
         <If test={{}} />
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
   });
   test("If throw error when there is too match children", () => {
@@ -68,9 +66,7 @@ describe("<If /> with children", () => {
     render(
       <ErrorBoundary
         fallbackRender={(error) => {
-          expect(error.message).toBe(
-            "If component must have at most two children"
-          );
+          expect(error.message).toBe("If component must have at most two children");
           return null;
         }}
       >
@@ -80,7 +76,7 @@ describe("<If /> with children", () => {
           <div>B</div>
           <div>C</div>
         </If>
-      </ErrorBoundary>
+      </ErrorBoundary>,
     );
   });
 });
@@ -91,7 +87,7 @@ describe("<If /> with <IfElse /> <Else />", () => {
       <If test={null}>
         <div>A</div>
         <Else>B</Else>
-      </If>
+      </If>,
     );
     expect(truthy).toMatchInlineSnapshot('"B"');
   });
@@ -100,7 +96,7 @@ describe("<If /> with <IfElse /> <Else />", () => {
       <If test={null}>
         <div>A</div>
         <IfElse test={{}}>B</IfElse>
-      </If>
+      </If>,
     );
     expect(falsy).toMatchInlineSnapshot('"B"');
   });
@@ -112,7 +108,7 @@ describe("<If /> with <IfElse /> <Else />", () => {
           <div>B</div>
           <Else>C</Else>
         </IfElse>
-      </If>
+      </If>,
     );
     expect(falsy).toMatchInlineSnapshot('"C"');
   });
@@ -125,7 +121,7 @@ describe("<If /> with <IfElse /> <Else />", () => {
           return <div>{res.test}</div>;
         }}
         <Else>B</Else>
-      </If>
+      </If>,
     );
     expect(truthy).toMatchInlineSnapshot('"<div>A</div>"');
   });
@@ -133,15 +129,11 @@ describe("<If /> with <IfElse /> <Else />", () => {
 
 describe("<If /> with `then` and `else` props", () => {
   test("If shows then if condition is truthy", () => {
-    const truthy = renderElement(
-      <If test={{}} then={<div>A</div>} else={<div>B</div>} />
-    );
+    const truthy = renderElement(<If test={{}} then={<div>A</div>} else={<div>B</div>} />);
     expect(truthy).toMatchInlineSnapshot('"<div>A</div>"');
   });
   test("If shows `else` if condition is falsy", () => {
-    const falsy = renderElement(
-      <If test={null} then={<div>A</div>} else={<div>B</div>} />
-    );
+    const falsy = renderElement(<If test={null} then={<div>A</div>} else={<div>B</div>} />);
     expect(falsy).toMatchInlineSnapshot('"<div>B</div>"');
   });
   test("If shows `else` without `then` if condition is falsy", () => {
@@ -158,7 +150,7 @@ describe("<If /> with `then` and `else` props", () => {
           return <div>{res.test}</div>;
         }}
         else={<div>B</div>}
-      />
+      />,
     );
     expect(truthy).toMatchInlineSnapshot('""');
   });
@@ -169,7 +161,7 @@ describe("<If /> with `fallback` prop", () => {
     const truthy = renderElement(
       <If test={{}} fallback={<div>B</div>}>
         <div>A</div>
-      </If>
+      </If>,
     );
     expect(truthy).toMatchInlineSnapshot('"<div>A</div>"');
   });
@@ -177,7 +169,7 @@ describe("<If /> with `fallback` prop", () => {
     const falsy = renderElement(
       <If test={null} fallback={<div>B</div>}>
         <div>A</div>
-      </If>
+      </If>,
     );
     expect(falsy).toMatchInlineSnapshot('"<div>B</div>"');
   });
@@ -193,7 +185,7 @@ describe("<If /> with `fallback` prop", () => {
           expectTypeOf(res).toEqualTypeOf<typeof condition>();
           return <div>{res.test}</div>;
         }}
-      </If>
+      </If>,
     );
     expect(truthy).toMatchInlineSnapshot('""');
   });

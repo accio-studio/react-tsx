@@ -9,10 +9,7 @@ type ErrorBoundaryState = {
   error: Error | null;
 };
 
-export class ErrorBoundary extends React.Component<
-  ErrorBoundaryProps,
-  ErrorBoundaryState
-> {
+export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { error: null };
@@ -59,7 +56,7 @@ if (import.meta.vitest) {
           }}
         >
           <ComponentWithError />
-        </ErrorBoundary>
+        </ErrorBoundary>,
       );
       expect(component).toBeTruthy();
     });
@@ -72,7 +69,7 @@ if (import.meta.vitest) {
           }}
         >
           <ComponentWithError hasError />
-        </ErrorBoundary>
+        </ErrorBoundary>,
       );
       expect(component).toBeTruthy();
     });
