@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { describe, expect, expectTypeOf, test, vi } from "vitest";
-import { Else, If, IfElse as ElseIf } from "../src";
+import { Else, If, IfElse as ElseIf } from "../src/if";
 import { ErrorBoundary, renderElement } from "./test-utils";
 
 describe("<If /> with children", () => {
@@ -9,7 +9,7 @@ describe("<If /> with children", () => {
       <If test={{}}>
         <>A</>
         <>B</>
-      </If>,
+      </If>
     );
     expect(truthy).toMatchInlineSnapshot('"A"');
   });
@@ -18,7 +18,7 @@ describe("<If /> with children", () => {
       <If test={null}>
         <>A</>
         <>B</>
-      </If>,
+      </If>
     );
     expect(falsy).toMatchInlineSnapshot('"B"');
   });
@@ -31,7 +31,7 @@ describe("<If /> with children", () => {
           return <>{res.test}</>;
         }}
         <>B</>
-      </If>,
+      </If>
     );
     expect(truthy).toMatchInlineSnapshot('"A"');
   });
@@ -43,7 +43,7 @@ describe("<If /> with children", () => {
           return <>{res.test}</>;
         }}
         <>B</>
-      </If>,
+      </If>
     );
     expect(truthy).toMatchInlineSnapshot('"B"');
   });
@@ -52,13 +52,15 @@ describe("<If /> with children", () => {
     render(
       <ErrorBoundary
         fallbackRender={(error) => {
-          expect(error.message).toBe("If component must have at least one child or `then` / `else` props");
+          expect(error.message).toBe(
+            "If component must have at least one child or `then` / `else` props"
+          );
           return null;
         }}
       >
         {/* @ts-expect-error - If throw error when there is no children */}
         <If test={{}} />
-      </ErrorBoundary>,
+      </ErrorBoundary>
     );
   });
   test("If throw error when there is too match children", () => {
@@ -66,7 +68,9 @@ describe("<If /> with children", () => {
     render(
       <ErrorBoundary
         fallbackRender={(error) => {
-          expect(error.message).toBe("If component must have at most two children");
+          expect(error.message).toBe(
+            "If component must have at most two children"
+          );
           return null;
         }}
       >
@@ -76,7 +80,7 @@ describe("<If /> with children", () => {
           <>B</>
           <>C</>
         </If>
-      </ErrorBoundary>,
+      </ErrorBoundary>
     );
   });
 });
@@ -87,7 +91,7 @@ describe("<If /> with <IfElse /> <Else />", () => {
       <If test={null}>
         <>A</>
         <Else>B</Else>
-      </If>,
+      </If>
     );
     expect(truthy).toMatchInlineSnapshot('"B"');
   });
@@ -98,7 +102,7 @@ describe("<If /> with <IfElse /> <Else />", () => {
         <ElseIf test={{}}>
           <>B</>
         </ElseIf>
-      </If>,
+      </If>
     );
     expect(falsy).toMatchInlineSnapshot('"B"');
   });
@@ -110,7 +114,7 @@ describe("<If /> with <IfElse /> <Else />", () => {
           <>B</>
           <Else>C</Else>
         </ElseIf>
-      </If>,
+      </If>
     );
     expect(falsy).toMatchInlineSnapshot('"C"');
   });
@@ -123,7 +127,7 @@ describe("<If /> with <IfElse /> <Else />", () => {
           return <>{res.test}</>;
         }}
         <Else>B</Else>
-      </If>,
+      </If>
     );
     expect(truthy).toMatchInlineSnapshot('"A"');
   });
@@ -152,7 +156,7 @@ describe("<If /> with `then` and `else` props", () => {
           return <>{res.test}</>;
         }}
         else={<>B</>}
-      />,
+      />
     );
     expect(truthy).toMatchInlineSnapshot('"A"');
   });
@@ -163,7 +167,7 @@ describe("<If /> with `fallback` prop", () => {
     const truthy = renderElement(
       <If test={{}} fallback={<>B</>}>
         <>A</>
-      </If>,
+      </If>
     );
     expect(truthy).toMatchInlineSnapshot('"A"');
   });
@@ -171,7 +175,7 @@ describe("<If /> with `fallback` prop", () => {
     const falsy = renderElement(
       <If test={null} fallback={<>B</>}>
         <>A</>
-      </If>,
+      </If>
     );
     expect(falsy).toMatchInlineSnapshot('"B"');
   });
@@ -187,7 +191,7 @@ describe("<If /> with `fallback` prop", () => {
           expectTypeOf(res).toEqualTypeOf<typeof condition>();
           return <>{res.test}</>;
         }}
-      </If>,
+      </If>
     );
     expect(truthy).toMatchInlineSnapshot('"A"');
   });
