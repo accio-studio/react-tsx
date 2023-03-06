@@ -1,5 +1,12 @@
 # @accio-studio/react-tsx
 
+## 0.1.1
+
+### Patch Changes
+
+- f500d3d: some fixes
+- 5bbe548: fixes
+
 ## 0.1.0
 
 ### Minor Changes
