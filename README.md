@@ -9,14 +9,36 @@ Headless primitives for react
 If component allows to render children only if condition is true
 
 ```tsx
+import { If } from "@accio-studio/react-tsx";
+
 <If test={condition}>
   <>Show me if conditioin is true</>
   <>Show me if conditioin is false</>
-</If>
+</If>;
 /**
  * @prop {unknown} test - Condition to show if condition is truthy.
- * @prop {React.ReactNode} children - First child will be shown if condition is truthy, second one – if it is falsy.
+ * @prop {React.ReactNode | (arg: NonNullable<T>) => React.ReactNode} children - First child will be shown if condition is truthy, second one – if it is falsy.
  */
+```
+
+or use `Else` and `<IfElse>` and function-as-a-child to get access to `NonNulable<typeof test>` value
+
+```tsx
+import { If, IfElse, Else } from '@accio-studio/react-tsx'
+
+<If
+ test={{arg: "A"}}
+>
+ {(data) => <>{data.arg}</>
+ //              ^? { arg: string }
+ <Else>B</Else>}
+// will render "A"
+<If
+ test={false}
+ <>A</>
+ <Else>B</Else>}
+/>
+// will render "B"
 ```
 
 ### `<If />` with `then` and `else`
@@ -26,14 +48,14 @@ If component must have `then` or `else` props.
 ```tsx
 <If
  test={true}
- then={<div>A</div>}
- else={<div>B</div>}
+ then={<>A</>}
+ else={<>B</>}
 />
 // will render "A"
 <If
- test={true}
- then={<div>A</div>}
- else={<div>B</div>}
+ test={false}
+ then={<>A</>}
+ else={<>B</>}
 />
 // will render "B"
 /**
