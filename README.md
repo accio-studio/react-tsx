@@ -2,9 +2,9 @@
 
 Headless primitives for react
 
-## <If />
+## `<If />`
 
-### <If /> with one/two children
+### `<If />` with one/two children
 
 If component allows to render children only if condition is true
 
@@ -19,7 +19,7 @@ If component allows to render children only if condition is true
  */
 ```
 
-### <If /> with `then` and `else`
+### `<If />` with `then` and `else`
 
 If component must have `then` or `else` props.
 
@@ -43,7 +43,7 @@ If component must have `then` or `else` props.
 */
 ```
 
-### <If /> with `fallback`
+### `<If />` with `fallback`
 
 If component must have at least one child or `fallback` prop.
 
