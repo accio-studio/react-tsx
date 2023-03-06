@@ -1,31 +1,30 @@
 import React from "react";
 
+type ReactNode = Exclude<React.ReactNode, React.ReactFragment>;
+
 type Props<T> = {
   test: T;
 } & (
   | {
-      then: React.ReactNode | Array<React.ReactNode> | ((arg: NonNullable<T>) => React.ReactNode);
-      else?: React.ReactNode | Array<React.ReactNode>;
+      then: React.ReactNode | ((arg: NonNullable<T>) => React.ReactNode);
+      else?: React.ReactNode;
     }
   | {
-      else: React.ReactNode | Array<React.ReactNode>;
+      else: React.ReactNode;
     }
   | {
-      children:
-        | React.ReactNode
-        | Array<React.ReactNode>
-        | ((arg: NonNullable<T>) => React.ReactNode | Array<React.ReactNode>);
-      fallback?: React.ReactNode | Array<React.ReactNode>;
+      children: ReactNode | ((arg: NonNullable<T>) => React.ReactNode);
+      fallback?: React.ReactNode;
     }
   | {
-      fallback: React.ReactNode | Array<React.ReactNode>;
+      fallback: React.ReactNode;
     }
   | {
       children:
-        | React.ReactNode
+        | ReactNode
         | ((arg: NonNullable<T>) => React.ReactNode)
-        | [React.ReactNode, React.ReactNode]
-        | [(arg: NonNullable<T>) => React.ReactNode, React.ReactNode];
+        | [ReactNode, ReactNode]
+        | [(arg: NonNullable<T>) => React.ReactNode, ReactNode];
     }
 );
 
@@ -52,7 +51,10 @@ export function If<T extends unknown>(props: Props<T>): JSX.Element {
   }
 
   if ("then" in props) {
-    if (props.else && !props.test) return <>{props.else}</>;
+    if (!props.test) return <>{props.else}</>;
+    if (typeof props.then === "function") {
+      return <>{props.then(props.test)}</>;
+    }
     return <>{props.then}</>;
   }
 
@@ -63,7 +65,12 @@ export function If<T extends unknown>(props: Props<T>): JSX.Element {
 
   if ("fallback" in props) {
     if (!props.test) return <>{props.fallback}</>;
-    if ("children" in props) return <>{props.children}</>;
+    if ("children" in props) {
+      if (typeof props.children === "function") {
+        return <>{props.children(props.test)}</>;
+      }
+      return <>{props.children}</>;
+    }
     return <>{null}</>;
   }
 
