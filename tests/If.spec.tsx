@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import { describe, expect, expectTypeOf, test, vi } from "vitest";
-import { Else, If, IfElse as ElseIf } from "../src/if";
+import { Else, If, IfElse as ElseIf } from "../src/if-else";
 import { ErrorBoundary, renderElement } from "./test-utils";
 
 describe("<If /> with children", () => {

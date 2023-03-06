@@ -1,1 +1,1 @@
-export { If, IfElse, Else } from "./if";
+export { If, IfElse, Else } from "./if-else";
