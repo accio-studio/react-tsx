@@ -44,7 +44,7 @@ type Props<T> = {
  * </If>
  * // will render "B"
  * ```
- * @see https://github.com/accio-studio/react-tsx
+ * @see https://github.com/accio-studio/react-tsx#if
  */
 export function If<T extends unknown>(props: Props<T>): JSX.Element {
   if (!("then" in props || "else" in props || "children" in props || "fallback" in props)) {

@@ -2,7 +2,7 @@
 
 Headless primitives for react
 
-## `<If />`
+## If
 
 ### `<If />` with one/two children
 
