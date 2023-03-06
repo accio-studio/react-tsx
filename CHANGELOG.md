@@ -1,5 +1,11 @@
 # @accio-studio/react-tsx
 
+## 0.1.2
+
+### Patch Changes
+
+- 0cf569e: fix wokflows
+
 ## 0.1.1
 
 ### Patch Changes
