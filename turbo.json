@@ -2,10 +2,13 @@
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "build": {
-      "outputs": ["dist"]
+      "outputs": ["dist"],
+      "cache": false
     },
     "lint": {},
-    "test": {},
+    "test": {
+      "cache": false
+    },
     "dev": {
       "cache": false
     }
