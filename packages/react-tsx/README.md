@@ -41,6 +41,14 @@ import { If, IfElse, Else } from '@accio-studio/react-tsx'
  </ElseIf>
 </If>
 // will render "B"
+<If test={false}>
+ <>A</>
+ <If.ElseIf test={false}>
+  <>B</>
+  <If.Else>C</If.Else>
+ </If.ElseIf>
+</If>
+// will render "C"
 ```
 
 ### `<If />` with `then` and `else`
@@ -85,3 +93,35 @@ If component must have at least one child or `fallback` prop.
 * @prop {React.ReactNode} children - Content to show if condition is truthy.
 * @prop {React.ReactNode} fallback - Content to show if condition is falsy.
 ```
+
+## Switch
+
+```tsx
+import { Switch } from "@accio-studio/react-tsx";
+
+const union = "idle" | "loading" | "error" | "success";
+
+<Switch expression={union} exhaustive>
+  <Switch.Case value={"idle"}>Idle</Switch.Case>
+  <Switch.Case value={"loading"}>Loading</Switch.Case>
+  <Switch.Case value={"error"}>Error</Switch.Case>
+  {/* <Switch.Case value={"success"}>Success</Switch.Case> */}
+  {/* <Switch.Default>Default</Switch.Default> */}
+</Switch>;
+// will cause of type error because of `exhaustive` prop
+```
+
+## Progress
+
+- [x] `<If />`
+  - [x] `<ElseIf />`
+  - [x] `<Else />`
+- [ ] `<Switch />`
+- [ ] `<Match />`
+- [ ] `<For />`
+
+## Credits
+
+- React Velcro
+  - [react-loops](https://github.com/leebyron/react-loops)
+  - [react-condition](https://github.com/andrewfluck/react-condition)

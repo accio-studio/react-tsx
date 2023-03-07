@@ -98,6 +98,8 @@ export function If<T extends unknown>(props: Props<T>): JSX.Element {
     </>
   );
 }
+If.ElseIf = If;
+If.Else = React.Fragment;
 
 export const IfElse = If;
 

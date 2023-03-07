@@ -2,6 +2,4 @@
 
 Headless primitives for react
 
-## If
-
-See: https://github.com/accio-studio/react-tsx#if
+See docs: https://github.com/accio-studio/react-tsx

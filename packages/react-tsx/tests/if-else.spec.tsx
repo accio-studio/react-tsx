@@ -114,6 +114,18 @@ describe("<If /> with <IfElse /> <Else />", () => {
     );
     expect(falsy).toMatchInlineSnapshot('"C"');
   });
+  test("If with If.Else and If.IfElse if conditions is falsy", () => {
+    const falsy = renderElement(
+      <If test={null}>
+        <>A</>
+        <If.ElseIf test={null}>
+          <>B</>
+          <If.Else>C</If.Else>
+        </If.ElseIf>
+      </If>,
+    );
+    expect(falsy).toMatchInlineSnapshot('"C"');
+  });
   test("If show function-as-a-children if condition is truthy", () => {
     const condition = { test: "A" };
     const truthy = renderElement(
