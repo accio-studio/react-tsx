@@ -1,5 +1,11 @@
 # @accio-studio/react-tsx
 
+## 0.1.4
+
+### Patch Changes
+
+- 37caeb7: rename package
+
 ## 0.1.3
 
 ### Patch Changes
