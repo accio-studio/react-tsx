@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/accio-ui/react-tsx.git"
+    "url": "git+https://github.com/alexeiaccio/react-tsx.git"
   },
   "keywords": [
     "react"
@@ -22,9 +22,9 @@
   "author": "Alexei Accio <alexei.accio@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/accio-ui/react-tsx/issues"
+    "url": "https://github.com/alexeiaccio/react-tsx/issues"
   },
-  "homepage": "https://github.com/accio-ui/react-tsx#readme",
+  "homepage": "https://github.com/alexeiaccio/react-tsx#readme",
   "type": "module",
   "exports": {
     ".": "./dist/index.js",

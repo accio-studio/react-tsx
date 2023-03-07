@@ -1,4 +1,3 @@
-import { If } from "@accio-ui/react-tsx";
 import { IFExample } from "./if-examples";
 
 export default function Page() {
