@@ -29,7 +29,7 @@ type Props<T> = {
 );
 
 /**
- * ### <If />
+ * ### `<If />`
  * @example
  * ```tsx
  * <If test={true}>

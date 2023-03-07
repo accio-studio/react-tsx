@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "ESNext",
+    "module": "ESNext",
+    "outDir": "dist",
     "lib": [
       "dom",
       "dom.iterable",
@@ -10,24 +12,24 @@
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    "declaration": true,
+    "incremental": true,
     "esModuleInterop": true,
-    "module": "esnext",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "jsx": "preserve",
-    "noUncheckedIndexedAccess": true,
-    "baseUrl": ".",
     "types": [
       "vite/client",
       "vitest/globals",
       "vitest/importMeta"
     ]
   },
-  "exclude": [
-    "node_modules"
-  ],
   "include": [
     "src",
     "tests"
   ],
+  "exclude": [
+    "node_modules"
+  ]
 }
