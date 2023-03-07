@@ -4,13 +4,15 @@
     "enabled": true,
     "rules": {
       "recommended": true
-    }
+    },
+    "ignore": ["dist", ".turbo"]
   },
   "formatter": {
     "enabled": true,
     "indentSize": 2,
     "indentStyle": "space",
     "formatWithErrors": true,
-    "lineWidth": 120
+    "lineWidth": 120,
+    "ignore": ["dist", ".turbo"]
   }
 }
