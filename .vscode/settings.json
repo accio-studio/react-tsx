@@ -14,5 +14,30 @@
   },
   "editor.codeActionsOnSave": {
     "source.organizeImports.rome": true
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "[!p]*/**": true,
+    "p[!a]*/**": true,
+    "pa[!c]*/**": true,
+    "pac[!k]*/**": true,
+    "pack[!a]*/**": true,
+    "packa[!g]*/**": true,
+    "packag[!e]*/**": true,
+    "package[!s]*/**": true,
+    "packages/[!r]*/**": true,
+    "packages/r[!e]*/**": true,
+    "packages/re[!a]*/**": true,
+    "packages/rea[!c]*/**": true,
+    "packages/reac[!t]*/**": true,
+    "packages/react[!-]*/**": true,
+    "packages/react-[!t]*/**": true,
+    "packages/react-t[!s]*/**": true,
+    "packages/react-ts[!x]*/**": true
   }
 }

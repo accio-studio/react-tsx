@@ -4,7 +4,7 @@
   "description": "Headless primitives for react",
   "scripts": {
     "test": "vitest run",
-    "test:dev": "vitest -u",
+    "test:dev": "vitest",
     "build": "pnpm build:swc && pnpm types",
     "build:swc": "swc src -d dist --copy-files",
     "dev": "pnpm build:swc -w",

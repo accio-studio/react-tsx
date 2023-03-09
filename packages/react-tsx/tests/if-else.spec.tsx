@@ -1,30 +1,30 @@
+import { Else, ElseIf as ElseIf, If } from "../src/if-else";
+import { ErrorBoundary, renderElement } from "./test-utils";
 import { render } from "@testing-library/react";
 import { describe, expect, expectTypeOf, test, vi } from "vitest";
-import { Else, If, IfElse as ElseIf } from "../src/if-else";
-import { ErrorBoundary, renderElement } from "./test-utils";
 
 describe("<If /> with children", () => {
   test("If shows children if condition is truthy", () => {
-    const truthy = renderElement(
+    const result = renderElement(
       <If test={{}}>
         <>A</>
         <>B</>
       </If>,
     );
-    expect(truthy).toMatchInlineSnapshot('"A"');
+    expect(result).toMatchInlineSnapshot('"A"');
   });
   test("If shows second child if condition is falsy", () => {
-    const falsy = renderElement(
+    const result = renderElement(
       <If test={null}>
         <>A</>
         <>B</>
       </If>,
     );
-    expect(falsy).toMatchInlineSnapshot('"B"');
+    expect(result).toMatchInlineSnapshot('"B"');
   });
   test("If show function-as-a-children if condition is truthy", () => {
     const condition = { test: "A" };
-    const truthy = renderElement(
+    const result = renderElement(
       <If test={condition}>
         {(res) => {
           expectTypeOf(res).toEqualTypeOf<typeof condition>();
@@ -33,10 +33,10 @@ describe("<If /> with children", () => {
         <>B</>
       </If>,
     );
-    expect(truthy).toMatchInlineSnapshot('"A"');
+    expect(result).toMatchInlineSnapshot('"A"');
   });
   test("If with FAAC shows second child if condition is falsy", () => {
-    const truthy = renderElement(
+    const result = renderElement(
       <If test={null as { test: string } | null}>
         {(res) => {
           expectTypeOf(res).toEqualTypeOf<{ test: string }>();
@@ -45,11 +45,11 @@ describe("<If /> with children", () => {
         <>B</>
       </If>,
     );
-    expect(truthy).toMatchInlineSnapshot('"B"');
+    expect(result).toMatchInlineSnapshot('"B"');
   });
   test("If throw error when there is no children", () => {
     vi.spyOn(console, "error").mockImplementation(() => {});
-    render(
+    const result = renderElement(
       <ErrorBoundary
         fallbackRender={(error) => {
           expect(error.message).toBe("If component must have at least one child or `then` / `else` props");
@@ -60,17 +60,17 @@ describe("<If /> with children", () => {
         <If test={{}} />
       </ErrorBoundary>,
     );
+    expect(result).toMatchInlineSnapshot('""');
   });
   test("If throw error when there is too match children", () => {
     vi.spyOn(console, "error").mockImplementation(() => {});
-    render(
+    const result = renderElement(
       <ErrorBoundary
         fallbackRender={(error) => {
           expect(error.message).toBe("If component must have at most two children");
           return null;
         }}
       >
-        {/* @ts-expect-error - If component must have at most two children */}
         <If test={{}}>
           <>A</>
           <>B</>
@@ -78,21 +78,22 @@ describe("<If /> with children", () => {
         </If>
       </ErrorBoundary>,
     );
+    expect(result).toMatchInlineSnapshot('""');
   });
 });
 
-describe("<If /> with <IfElse /> <Else />", () => {
-  test("If shows Else if condition is falsy", () => {
-    const truthy = renderElement(
-      <If test={null}>
+describe("<If /> with <Else />", () => {
+  test("If shows Else if condition is truthy", () => {
+    const result = renderElement(
+      <If test={{}}>
         <>A</>
         <Else>B</Else>
       </If>,
     );
-    expect(truthy).toMatchInlineSnapshot('"B"');
+    expect(result).toMatchInlineSnapshot('"A"');
   });
-  test("If shows IfElse if condition is falsy", () => {
-    const falsy = renderElement(
+  test("If shows ElseIf if condition is falsy", () => {
+    const result = renderElement(
       <If test={null}>
         <>A</>
         <ElseIf test={{}}>
@@ -100,10 +101,10 @@ describe("<If /> with <IfElse /> <Else />", () => {
         </ElseIf>
       </If>,
     );
-    expect(falsy).toMatchInlineSnapshot('"B"');
+    expect(result).toMatchInlineSnapshot('"B"');
   });
-  test("If shows Else in IfElse if conditions is falsy", () => {
-    const falsy = renderElement(
+  test("If shows Else in ElseIf if conditions is falsy", () => {
+    const result = renderElement(
       <If test={null}>
         <>A</>
         <ElseIf test={null}>
@@ -112,10 +113,31 @@ describe("<If /> with <IfElse /> <Else />", () => {
         </ElseIf>
       </If>,
     );
-    expect(falsy).toMatchInlineSnapshot('"C"');
+    expect(result).toMatchInlineSnapshot('"C"');
   });
-  test("If with If.Else and If.IfElse if conditions is falsy", () => {
-    const falsy = renderElement(
+  test("If works with recurcive <ElseIf /> and <Else />", () => {
+    const result = renderElement(
+      <If test={null}>
+        <>A</>
+        <ElseIf test={null}>
+          <>B</>
+          <Else>C</Else>
+        </ElseIf>
+        <ElseIf test={null}>
+          <>D</>
+          <ElseIf test={{}}>
+            <>E</>
+            <Else>F</Else>
+          </ElseIf>
+          <Else>G</Else>
+        </ElseIf>
+        <Else>H</Else>
+      </If>,
+    );
+    expect(result).toMatchInlineSnapshot('"CEGH"');
+  });
+  test("If with If.Else and If.ElseIf if conditions is falsy", () => {
+    const result = renderElement(
       <If test={null}>
         <>A</>
         <If.ElseIf test={null}>
@@ -124,11 +146,11 @@ describe("<If /> with <IfElse /> <Else />", () => {
         </If.ElseIf>
       </If>,
     );
-    expect(falsy).toMatchInlineSnapshot('"C"');
+    expect(result).toMatchInlineSnapshot('"C"');
   });
   test("If show function-as-a-children if condition is truthy", () => {
     const condition = { test: "A" };
-    const truthy = renderElement(
+    const result = renderElement(
       <If test={condition}>
         {(res) => {
           expectTypeOf(res).toEqualTypeOf<typeof condition>();
@@ -137,26 +159,43 @@ describe("<If /> with <IfElse /> <Else />", () => {
         <Else>B</Else>
       </If>,
     );
-    expect(truthy).toMatchInlineSnapshot('"A"');
+    expect(result).toMatchInlineSnapshot('"A"');
+  });
+  test("If throw error when <Else /> is not last child", () => {
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    const result = renderElement(
+      <ErrorBoundary
+        fallbackRender={(error) => {
+          expect(error.message).toBe("Else must be last child");
+          return null;
+        }}
+      >
+        <If test={{}}>
+          <Else>A</Else>
+          <>B</>
+        </If>
+      </ErrorBoundary>,
+    );
+    expect(result).toMatchInlineSnapshot('""');
   });
 });
 
 describe("<If /> with `then` and `else` props", () => {
   test("If shows then if condition is truthy", () => {
-    const truthy = renderElement(<If test={{}} then={<>A</>} else={<>B</>} />);
-    expect(truthy).toMatchInlineSnapshot('"A"');
+    const result = renderElement(<If test={{}} then={<>A</>} else={<>B</>} />);
+    expect(result).toMatchInlineSnapshot('"A"');
   });
   test("If shows `else` if condition is falsy", () => {
-    const falsy = renderElement(<If test={null} then={<>A</>} else={<>B</>} />);
-    expect(falsy).toMatchInlineSnapshot('"B"');
+    const result = renderElement(<If test={null} then={<>A</>} else={<>B</>} />);
+    expect(result).toMatchInlineSnapshot('"B"');
   });
   test("If shows `else` without `then` if condition is falsy", () => {
-    const falsy = renderElement(<If test={null} else={<>B</>} />);
-    expect(falsy).toMatchInlineSnapshot('"B"');
+    const result = renderElement(<If test={null} else={<>B</>} />);
+    expect(result).toMatchInlineSnapshot('"B"');
   });
   test("If show `then` render props if condition is truthy", () => {
     const condition = { test: "A" };
-    const truthy = renderElement(
+    const result = renderElement(
       <If
         test={condition}
         then={(res) => {
@@ -166,34 +205,34 @@ describe("<If /> with `then` and `else` props", () => {
         else={<>B</>}
       />,
     );
-    expect(truthy).toMatchInlineSnapshot('"A"');
+    expect(result).toMatchInlineSnapshot('"A"');
   });
 });
 
 describe("<If /> with `fallback` prop", () => {
   test("If shows children if condition is truthy", () => {
-    const truthy = renderElement(
+    const result = renderElement(
       <If test={{}} fallback={<>B</>}>
         <>A</>
       </If>,
     );
-    expect(truthy).toMatchInlineSnapshot('"A"');
+    expect(result).toMatchInlineSnapshot('"A"');
   });
   test("If shows `fallback` if condition is falsy", () => {
-    const falsy = renderElement(
+    const result = renderElement(
       <If test={null} fallback={<>B</>}>
         <>A</>
       </If>,
     );
-    expect(falsy).toMatchInlineSnapshot('"B"');
+    expect(result).toMatchInlineSnapshot('"B"');
   });
   test("If shows `fallback` whithout children if condition is falsy", () => {
-    const falsy = renderElement(<If test={null} fallback={<>B</>} />);
-    expect(falsy).toMatchInlineSnapshot('"B"');
+    const result = renderElement(<If test={null} fallback={<>B</>} />);
+    expect(result).toMatchInlineSnapshot('"B"');
   });
   test("If show function-as-a-children if condition is truthy", () => {
     const condition = { test: "A" };
-    const truthy = renderElement(
+    const result = renderElement(
       <If test={condition} fallback={<>B</>}>
         {(res) => {
           expectTypeOf(res).toEqualTypeOf<typeof condition>();
@@ -201,6 +240,6 @@ describe("<If /> with `fallback` prop", () => {
         }}
       </If>,
     );
-    expect(truthy).toMatchInlineSnapshot('"A"');
+    expect(result).toMatchInlineSnapshot('"A"');
   });
 });

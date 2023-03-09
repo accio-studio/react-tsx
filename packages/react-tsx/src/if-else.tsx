@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 
 type ReactNode = Exclude<React.ReactNode, React.ReactFragment>;
 
@@ -23,8 +23,8 @@ type Props<T> = {
       children:
         | ReactNode
         | ((arg: NonNullable<T>) => React.ReactNode)
-        | [ReactNode, ReactNode]
-        | [(arg: NonNullable<T>) => React.ReactNode, ReactNode];
+        | [ReactNode, ...ReactNode[]]
+        | [(arg: NonNullable<T>) => React.ReactNode, ...ReactNode[]];
     }
 );
 
@@ -75,10 +75,8 @@ export function If<T extends unknown>(props: Props<T>): JSX.Element {
   }
 
   const children = Array.isArray(props.children) ? props.children : [props.children];
-
-  if (children.length > 2) {
-    throw new Error("If component must have at most two children");
-  }
+  const count = children.length;
+  let hasElseIf = false;
 
   return (
     <>
@@ -90,8 +88,16 @@ export function If<T extends unknown>(props: Props<T>): JSX.Element {
           return child;
         }),
         (child, index) => {
+          hasElseIf ||= React.isValidElement(child) && child.type === ElseIf;
+          if (React.isValidElement(child) && child.type === Else && index < count - 1) {
+            throw new Error("Else must be last child");
+          }
           if (props.test && index === 0) return child;
-          if (!props.test && index === 1) return child;
+          if (!props.test && hasElseIf && index > 0 && index < count - 1) return child;
+          if (!props.test && index === count - 1) return child;
+          if (!hasElseIf && index > 1) {
+            throw new Error("If component must have at most two children");
+          }
           return null;
         },
       )}
@@ -101,6 +107,6 @@ export function If<T extends unknown>(props: Props<T>): JSX.Element {
 If.ElseIf = If;
 If.Else = React.Fragment;
 
-export const IfElse = If;
+export const ElseIf = <T extends unknown>(props: Props<T>) => <If {...props} />;
 
-export const Else = React.Fragment;
+export const Else = (props: PropsWithChildren) => <React.Fragment {...props} />;
