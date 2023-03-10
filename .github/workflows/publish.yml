@@ -3,9 +3,6 @@ on:
   push:
     branches:
       - "main"
-    paths:
-      - "packages/**"
-      - "!apps/**"
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 

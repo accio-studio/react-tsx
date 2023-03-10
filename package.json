@@ -9,7 +9,7 @@
     "format": "tsc && rome check --apply-suggested . && rome format --write .",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo lint test && turbo run build --filter=docs... && changeset publish -r"
+    "release": "turbo lint test && turbo run build --filter='./packages/*' && changeset publish -r"
   },
   "repository": {
     "type": "git",
