@@ -1,6 +1,6 @@
 {
   "name": "@accio-ui/react-tsx",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Headless primitives for react",
   "scripts": {
     "test": "vitest run",
