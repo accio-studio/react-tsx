@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "outDir": "dist",
     "lib": [
       "dom",
       "dom.iterable",
@@ -13,12 +12,13 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "incremental": true,
+    "incremental": false,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "noEmit": true,
+    "jsx": "react-jsx",
     "types": [
       "vite/client",
       "vitest/globals",
