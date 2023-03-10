@@ -1,5 +1,11 @@
 # @accio-ui/react-tsx
 
+## 0.2.2
+
+### Patch Changes
+
+- e8f3aac: If fixes
+
 ## 0.2.1
 
 ### Patch Changes
