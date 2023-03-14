@@ -103,10 +103,8 @@ export const If = React.forwardRef(<T extends unknown>(props: Props<T>, ref: Rea
   );
 }) as unknown as (<T extends unknown>(props: Props<T> & { ref?: React.Ref<HTMLDivElement> }) => React.ReactElement) & {
   ElseIf: <T extends unknown>(props: Props<T> & { ref?: React.Ref<HTMLDivElement> }) => React.ReactElement;
-  Else: React.ExoticComponent<{ children?: React.ReactNode }>;
+  Else: typeof Else;
 };
-If.ElseIf = If;
-If.Else = React.Fragment;
 
 /**
  * ### `<ElseIf />`
@@ -138,6 +136,10 @@ export const ElseIf = If;
  * @see https://github.com/accio-studio/react-tsx#if
  */
 export const Else = (props: PropsWithChildren) => <React.Fragment {...props} />;
+
+If.ElseIf = If;
+
+If.Else = Else;
 
 function createReactElement(child: React.ReactNode, ref: React.Ref<unknown>) {
   return React.isValidElement(child) ? React.createElement(child.type, { ...(child.props ?? {}), ref }) : child;
