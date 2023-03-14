@@ -1,6 +1,7 @@
 import { Else, ElseIf as ElseIf, If } from "../src/if-else";
 import { ErrorBoundary, renderElement } from "./test-utils";
 import { render } from "@testing-library/react";
+import React from "react";
 import { describe, expect, expectTypeOf, test, vi } from "vitest";
 
 describe("<If /> with children", () => {
@@ -83,7 +84,7 @@ describe("<If /> with children", () => {
 });
 
 describe("<If /> with <Else />", () => {
-  test("If shows Else if condition is truthy", () => {
+  test("If shows first child if condition is truthy", () => {
     const result = renderElement(
       <If test={{}}>
         <>A</>
@@ -241,5 +242,30 @@ describe("<If /> with `fallback` prop", () => {
       </If>,
     );
     expect(result).toMatchInlineSnapshot('"A"');
+  });
+});
+
+describe("<If /> forwards ref", () => {
+  test("If pass ref to first child if condition is truthy", () => {
+    const ref = React.createRef<HTMLDivElement>();
+    const result = renderElement(
+      <If test={{}} ref={ref}>
+        <div>A</div>
+        <div>B</div>
+      </If>,
+    );
+    expect(ref.current?.innerHTML).toMatchInlineSnapshot('"A"');
+    expect(result).toMatchInlineSnapshot('"<div>A</div>"');
+  });
+  test("If pass ref to second child if condition is falsy", () => {
+    const ref = React.createRef<HTMLDivElement>();
+    const result = renderElement(
+      <If test={null} ref={ref}>
+        <div>A</div>
+        <div>B</div>
+      </If>,
+    );
+    expect(ref.current?.innerHTML).toMatchInlineSnapshot('"B"');
+    expect(result).toMatchInlineSnapshot('"<div>B</div>"');
   });
 });

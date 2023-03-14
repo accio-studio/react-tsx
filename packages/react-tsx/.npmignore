@@ -8,3 +8,4 @@ tsconfig.json
 .vscode
 turbo.json
 rome.json
+vitest.config.ts
