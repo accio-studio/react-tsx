@@ -1,5 +1,12 @@
 # @accio-ui/react-tsx
 
+## 0.2.3
+
+### Patch Changes
+
+- ee8d5d3: if forwards ref
+- fd0c62b: fixes
+
 ## 0.2.2
 
 ### Patch Changes
