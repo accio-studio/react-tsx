@@ -9,7 +9,7 @@ Headless primitives for react
 If component allows to render children only if condition is true
 
 ```tsx
-import { If } from "@accio-studio/react-tsx";
+import { If } from "@accio-ui/react-tsx";
 
 <If test={condition}>
   <>Show me if conditioin is true</>
@@ -24,7 +24,7 @@ import { If } from "@accio-studio/react-tsx";
 or use `<Else />` and `<IfElse />` and function-as-a-child to get access to `NonNulable<typeof test>` value
 
 ```tsx
-import { If, IfElse, Else } from '@accio-studio/react-tsx'
+import { If, IfElse, Else } from '@accio-ui/react-tsx'
 
 <If
  test={{arg: "A"}}
@@ -97,7 +97,7 @@ If component must have at least one child or `fallback` prop.
 ## Switch
 
 ```tsx
-import { Switch } from "@accio-studio/react-tsx";
+import { Switch } from "@accio-ui/react-tsx";
 
 const union = "idle" | "loading" | "error" | "success";
 

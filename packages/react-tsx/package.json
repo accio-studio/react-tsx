@@ -6,7 +6,7 @@
     "test": "vitest run",
     "test:dev": "vitest",
     "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --watch",
+    "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
     "lint": "tsc && rome check --apply-suggested . && rome format --write .",
     "clean": "rm -rf dist && rm -rf .turbo"
   },
@@ -26,6 +26,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "module": "dist/index.mjs",
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "access": "public",
     "typesVersions": {
@@ -52,6 +55,6 @@
     "vitest": "^0.29.2"
   },
   "peerDependencies": {
-    "react": ">=18.2.0"
+    "react": "^18"
   }
 }

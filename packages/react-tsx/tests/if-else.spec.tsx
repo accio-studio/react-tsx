@@ -1,6 +1,5 @@
-import { Else, ElseIf as ElseIf, If } from "../src/if-else";
+import { Else, ElseIf, If } from "../src/if-else";
 import { ErrorBoundary, renderElement } from "./test-utils";
-import { render } from "@testing-library/react";
 import React from "react";
 import { describe, expect, expectTypeOf, test, vi } from "vitest";
 
@@ -267,5 +266,48 @@ describe("<If /> forwards ref", () => {
     );
     expect(ref.current?.innerHTML).toMatchInlineSnapshot('"B"');
     expect(result).toMatchInlineSnapshot('"<div>B</div>"');
+  });
+  test("If pass ref to next child if condition is falsy", () => {
+    const ref = React.createRef<HTMLDivElement>();
+    const result = renderElement(
+      <If test={null} ref={ref}>
+        <div>A</div>
+        <ElseIf test={null}>
+          <div>B</div>
+          <Else>
+            <div>C</div>
+          </Else>
+        </ElseIf>
+      </If>,
+    );
+    expect(ref.current?.innerHTML).toMatchInlineSnapshot('"C"');
+    expect(result).toMatchInlineSnapshot('"<div>C</div>"');
+  });
+  test("If pass ref to next child on <If.Else> if condition is falsy", () => {
+    const ref = React.createRef<HTMLDivElement>();
+    const result = renderElement(
+      <If test={null} ref={ref}>
+        <div>A</div>
+        <If.ElseIf test={null}>
+          <div>B</div>
+          <If.Else>
+            <div>C</div>
+          </If.Else>
+        </If.ElseIf>
+      </If>,
+    );
+    expect(ref.current?.innerHTML).toMatchInlineSnapshot('"C"');
+    expect(result).toMatchInlineSnapshot('"<div>C</div>"');
+  });
+  test("If do not pass ref to <Else /> child if it is not DOM element", () => {
+    const ref = React.createRef<HTMLDivElement>();
+    const result = renderElement(
+      <If test={null} ref={ref}>
+        <div>A</div>
+        <Else>B</Else>
+      </If>,
+    );
+    expect(ref.current?.innerHTML).toMatchInlineSnapshot("undefined");
+    expect(result).toMatchInlineSnapshot('"B"');
   });
 });

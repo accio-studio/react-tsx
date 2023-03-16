@@ -1,10 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.
   experimental: {
-    // Required:
     appDir: true,
+    mdxRs: true,
   },
 };
 
-module.exports = nextConfig;
+const withMDX = require("@next/mdx")({
+  extension: /\.mdx?$/,
+  options: {
+    experimental: {
+      mdxRs: true,
+    },
+  },
+});
+module.exports = withMDX(nextConfig);

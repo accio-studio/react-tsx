@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
 type ReactNode = Exclude<React.ReactNode, React.ReactFragment>;
 
@@ -101,8 +101,8 @@ export const If = React.forwardRef(<T extends unknown>(props: Props<T>, ref: Rea
       },
     ),
   );
-}) as unknown as (<T extends unknown>(props: Props<T> & { ref?: React.Ref<HTMLDivElement> }) => React.ReactElement) & {
-  ElseIf: <T extends unknown>(props: Props<T> & { ref?: React.Ref<HTMLDivElement> }) => React.ReactElement;
+}) as unknown as (<T extends unknown>(props: Props<T> & { ref?: React.Ref<unknown> }) => React.ReactElement) & {
+  ElseIf: <T extends unknown>(props: Props<T> & { ref?: React.Ref<unknown> }) => React.ReactElement;
   Else: typeof Else;
 };
 
@@ -135,10 +135,45 @@ export const ElseIf = If;
  * ```
  * @see https://github.com/accio-studio/react-tsx#if
  */
-export const Else = (props: PropsWithChildren) => <React.Fragment {...props} />;
+export const Else = React.forwardRef((props: React.PropsWithChildren, ref) => {
+  return React.createElement(
+    React.Fragment,
+    undefined,
+    React.Children.map(props.children, (child) => {
+      return createReactElement(child, ref);
+    }),
+  );
+});
 
+/**
+ * ### `<ElseIf />`
+ * @example
+ * ```tsx
+ * <If test={false}>
+ *  A
+ *  <If.ElseIf test={true}>
+ *    B
+ *    C
+ *  </If.ElseIf>
+ * </If>
+ * // will render "B"
+ * ```
+ * @see https://github.com/accio-studio/react-tsx#if
+ */
 If.ElseIf = If;
 
+/**
+ * ### `<Else />`
+ * @example
+ * ```tsx
+ * <If test={false}>
+ *  A
+ *  <If.Else>B</If.Else>
+ * </If>
+ * // will render "B"
+ * ```
+ * @see https://github.com/accio-studio/react-tsx#if
+ */
 If.Else = Else;
 
 function createReactElement(child: React.ReactNode, ref: React.Ref<unknown>) {
