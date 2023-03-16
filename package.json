@@ -7,7 +7,6 @@
     "clean": "turbo run clean && rm -rf .turbo",
     "lint": "turbo run lint",
     "format": "tsc && rome check --apply-suggested . && rome format --write .",
-    "build:ci": "turbo run build --filter='./packages/*'",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "turbo lint test && turbo run build --filter='./packages/*' && changeset publish -r"
