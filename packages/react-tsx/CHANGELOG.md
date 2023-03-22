@@ -1,5 +1,11 @@
 # @accio-ui/react-tsx
 
+## 1.0.0
+
+### Major Changes
+
+- 26f6f88: colors & ui
+
 ## 0.2.4
 
 ### Patch Changes
