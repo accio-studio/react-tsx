@@ -24,8 +24,14 @@
   "homepage": "https://github.com/alexeiaccio/react-tsx#readme",
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
+    "@csstools/postcss-oklab-function": "^2.1.0",
+    "@radix-ui/colors": "^0.1.8",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
     "rome": "^11.0.0",
-    "turbo": "^1.8.3"
+    "tailwindcss": "^3.2.7",
+    "turbo": "^1.8.3",
+    "typescript": "^5.0.2"
   },
   "packageManager": "pnpm@7.29.0"
 }

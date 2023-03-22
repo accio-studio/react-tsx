@@ -1,0 +1,48 @@
+{
+  "name": "@accio-ui/colors",
+  "version": "0.2.4",
+  "description": "Fork of @radix-ui/colors with oklch color space",
+  "scripts": {
+    "build:ts": "rm -rf tmp && npx tsx scripts/build-ts-files.ts",
+    "build:css": "npx tsx scripts/build-css-modules.ts",
+    "build": "pnpm build:ts && pnpm build:css && tsup tmp/index.ts --format cjs,esm --dts && rm -rf tmp",
+    "dev": "pnpm build",
+    "lint": "tsc && rome check --apply-suggested . && rome format --write .",
+    "clean": "rm -rf dist && rm -rf .turbo && rm -rf tmp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexeiaccio/react-tsx.git"
+  },
+  "keywords": [
+    "oklch"
+  ],
+  "author": "Alexei Accio <alexei.accio@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexeiaccio/react-tsx/issues"
+  },
+  "homepage": "https://github.com/alexeiaccio/react-tsx#readme",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.mjs",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "typesVersions": {
+      "*": {
+        "*": [
+          "dist/index.d.ts"
+        ]
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.3",
+    "colorjs.io": "^0.4.3",
+    "tsup": "^6.6.3",
+    "typescript": "^5.0.2"
+  }
+}

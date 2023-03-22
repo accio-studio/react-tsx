@@ -1,6 +1,7 @@
 "use client";
 
 import { If } from "@accio-ui/react-tsx";
+import { Button } from "@accio-ui/ui";
 import { useState } from "react";
 
 export function IFExample() {
@@ -12,7 +13,7 @@ export function IFExample() {
         <h1>Truthy</h1>
         <h1>Falsy</h1>
       </If>
-      <button onClick={() => setIstruthy(!isTruthy)}>Toggle</button>
+      <Button onClick={() => setIstruthy(!isTruthy)}>Toggle</Button>
     </div>
   );
 }
