@@ -1,6 +1,6 @@
 {
   "name": "@accio-ui/colors",
-  "version": "0.2.4",
+  "version": "1.0.0",
   "description": "Fork of @radix-ui/colors with oklch color space",
   "scripts": {
     "build:ts": "rm -rf tmp && npx tsx scripts/build-ts-files.ts",
