@@ -1,12 +1,11 @@
-
 name: Chromatic
-on: push
-  branches:
+on:
+  push:
+    branches:
       - "main"
     paths:
       - "packages/ui/**"
       - "!apps/**"
-
 
 jobs:
   chromatic-deployment:
