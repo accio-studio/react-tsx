@@ -1,33 +1,37 @@
-import { action } from "@fwoosh/panel-actions";
-import * as React from "react";
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button } from "../src";
+import { Button } from "../src/button";
 
-export const meta: ReactMeta = {
-  title: "Components/Button",
+// More on how to set up stories at: https://storybook.js.org/docs/7.0/react/writing-stories/introduction
+const meta = {
+  title: "Example/Button",
   component: Button,
-  parameters: {
-    // designs: "https://www.figma.com/file/LKQ4FJ4bTnCSjedbRpk931/Sample-File",
+  tags: ["autodocs"],
+  argTypes: {
+    size: { control: "" },
+  },
+} satisfies Meta<typeof Button>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+// More on writing stories with args: https://storybook.js.org/docs/7.0/react/writing-stories/args
+export const Defaut: Story = {
+  args: {
+    children: "Button",
   },
 };
 
-/**
- * The default story.
- *
- * Describe you **stories** with the _full power of markdown_!
- *
- * > Even quote things!
- */
-export const Playground: ReactStory = () => {
-  return (
-    <div className="p-24">
-      <Button onPress={action("onClick")}>Click me</Button>
-    </div>
-  );
+export const Medium: Story = {
+  args: {
+    size: "medium",
+    children: "Button",
+  },
 };
 
-// Playground.parameters = {
-//   designs: {
-//     spec: "https://www.figma.com/file/LKQ4FJ4bTnCSjedbRpk931/Sample-File?node-id=1%3A2",
-//   },
-// };
+export const Large: Story = {
+  args: {
+    size: "large",
+    children: "Button",
+  },
+};

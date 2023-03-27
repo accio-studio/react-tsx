@@ -21,11 +21,10 @@
     "jsx": "react-jsx",
   },
   "include": [
-    "config",
+    ".storybook",
     "src",
     "stories",
     "tests",
-    "fwoosh.config.ts"
   ],
   "exclude": [
     "node_modules"

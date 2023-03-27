@@ -151,11 +151,7 @@ function Fragment(...children: Array<React.ReactNode>) {
  * ```
  * @see https://github.com/accio-studio/react-tsx#if
  */
-export const If = {
-  ..._If,
-  ElseIf,
-  Else,
-} as typeof _If & {
+export const If = Object.assign(_If, {
   /**
    * ### `<ElseIf />`
    * @example
@@ -171,7 +167,7 @@ export const If = {
    * ```
    * @see https://github.com/accio-studio/react-tsx#if
    */
-  ElseIf: typeof ElseIf;
+  ElseIf,
   /**
    * ### `<Else />`
    * @example
@@ -184,5 +180,5 @@ export const If = {
    * ```
    * @see https://github.com/accio-studio/react-tsx#if
    */
-  Else: typeof Else;
-};
+  Else,
+});

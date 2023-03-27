@@ -39,3 +39,7 @@ yarn-error.log*
 # tailwind
 .turbo
 styles/dist.css
+
+# storybook
+build-storybook.log
+storybook-static

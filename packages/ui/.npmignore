@@ -1,4 +1,4 @@
-config
+.storybook
 src
 tests
 stories
@@ -7,5 +7,6 @@ tsconfig.json
 .turbo
 turbo.json
 rome.json
-playwright.config.ts
-fwoosh.config.ts
+vite.config.ts
+build-storybook.log
+storybook-static

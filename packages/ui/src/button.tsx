@@ -29,8 +29,7 @@ const buttonVariants = cva(
   },
 );
 export interface ButtonVariants extends VariantProps<typeof buttonVariants> {}
-
-export const button = (variants: ButtonVariants) => twMerge(buttonVariants(variants));
+export const button = (variants: ButtonVariants, className?: string) => twMerge(buttonVariants(variants), className);
 
 export interface ButtonProps extends AriaButtonProps<"button"> {
   value?: string;
@@ -38,7 +37,7 @@ export interface ButtonProps extends AriaButtonProps<"button"> {
 }
 
 export function Button(props: ButtonProps & React.HTMLAttributes<"button"> & ButtonVariants) {
-  let { children, className } = props;
+  let { children, size, className } = props;
   let ref = React.useRef<HTMLButtonElement>(null);
   let { buttonProps, isPressed } = useButton(
     {
@@ -49,7 +48,7 @@ export function Button(props: ButtonProps & React.HTMLAttributes<"button"> & But
   );
 
   return (
-    <button {...buttonProps} className={button({ size: "small", isPressed })} ref={ref}>
+    <button {...buttonProps} className={button({ size, isPressed }, className)} ref={ref}>
       {children}
     </button>
   );
