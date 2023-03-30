@@ -43,3 +43,6 @@ styles/dist.css
 # storybook
 build-storybook.log
 storybook-static
+
+# preview.js
+__previewjs__

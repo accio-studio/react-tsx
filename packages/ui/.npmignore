@@ -10,3 +10,4 @@ rome.json
 vite.config.ts
 build-storybook.log
 storybook-static
+__previewjs__

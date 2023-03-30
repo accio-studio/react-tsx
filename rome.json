@@ -3,9 +3,12 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "all": true,
+      "nursery": {
+        "all": true
+      }
     },
-    "ignore": ["dist", ".next", ".turbo"]
+    "ignore": ["dist", ".next", ".turbo", "storybook-static"]
   },
   "formatter": {
     "enabled": true,
@@ -13,6 +16,9 @@
     "indentStyle": "space",
     "formatWithErrors": true,
     "lineWidth": 120,
-    "ignore": ["dist", ".next", ".turbo"]
+    "ignore": ["dist", ".next", ".turbo", "storybook-static"]
+  },
+  "organizeImports": {
+    "enabled": true
   }
 }

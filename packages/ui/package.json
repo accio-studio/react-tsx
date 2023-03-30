@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
-    "lint": "tsc && rome check --apply-suggested . && rome format --write .",
+    "lint": "tsc && rome check --apply-unsafe . && rome format --write .",
     "clean": "rm -rf dist && rm -rf out && rm -rf .turbo",
     "test": "// there is no test script",
     "storybook": "storybook dev -p 6006",
@@ -52,17 +52,17 @@
     "@react-aria/utils": "^3.15.0"
   },
   "devDependencies": {
-    "@csstools/postcss-oklab-function": "^2.1.0",
-    "@storybook/addon-essentials": "^7.0.0-rc.7",
-    "@storybook/addon-interactions": "^7.0.0-rc.7",
-    "@storybook/addon-links": "^7.0.0-rc.7",
-    "@storybook/blocks": "^7.0.0-rc.7",
-    "@storybook/react": "^7.0.0-rc.7",
-    "@storybook/react-vite": "^7.0.0-rc.7",
-    "@storybook/testing-library": "^0.0.14-next.1",
+    "@csstools/postcss-oklab-function": "^2.2.0",
+    "@storybook/addon-essentials": "7.0.0-rc.10",
+    "@storybook/addon-interactions": "7.0.0-rc.10",
+    "@storybook/addon-links": "7.0.0-rc.10",
+    "@storybook/blocks": "7.0.0-rc.10",
+    "@storybook/react": "7.0.0-rc.10",
+    "@storybook/react-vite": "7.0.0-rc.10",
+    "@storybook/testing-library": "0.0.14-next.1",
     "@testing-library/react": "^14.0.0",
-    "@types/node": "^18.15.3",
-    "@types/react": "^18.0.28",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.31",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react-swc": "^3.2.0",
     "autoprefixer": "^10.4.14",
@@ -73,18 +73,18 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rome": "^11.0.0",
-    "storybook": "^7.0.0-rc.7",
-    "tailwind-merge": "^1.10.0",
-    "tailwindcss": "^3.2.7",
-    "tsup": "^6.6.3",
+    "rome": "^12.0.0",
+    "storybook": "7.0.0-rc.10",
+    "tailwind-merge": "^1.11.0",
+    "tailwindcss": "^3.3.0",
+    "tsup": "^6.7.0",
     "typescript": "^5.0.2",
-    "vite": "^4.2.0",
-    "vitest": "^0.29.3"
+    "vite": "^4.2.1",
+    "vitest": "^0.29.8"
   },
   "peerDependencies": {
-    "react": "^18"
+    "react": "^18.2.0"
   },
-  "readme": "ERROR: No README data found!",
+  "readme": "./README.md",
   "_id": "@accio-ui/ui@1.0.0"
 }

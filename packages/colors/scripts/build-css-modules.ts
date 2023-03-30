@@ -14,7 +14,7 @@ async function mkdir(
 
 const out_dir = path.resolve(__dirname, "../dist/css");
 
-function to_kebab_case(str: string) {
+function toKebabCase(str: string) {
   return str
     .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
     ?.map((x) => x.toLowerCase())
@@ -35,7 +35,7 @@ async function main() {
 
   Object.entries(allColorScales).forEach(async ([color_scale_name, scale]) => {
     const selector = /DarkA?$/.test(color_scale_name) ? ".dark" : ":root";
-    const name = to_kebab_case(color_scale_name);
+    const name = toKebabCase(color_scale_name);
     // hsl
     const scale_as_hsl_css_properties = Object.entries(scale)
       .map(([name, value]) => `  --${name}: ${value};`)

@@ -7,7 +7,7 @@
     "build:css": "npx tsx scripts/build-css-modules.ts",
     "build": "pnpm build:ts && pnpm build:css && tsup tmp/index.ts --format cjs,esm --dts && rm -rf tmp",
     "dev": "pnpm build",
-    "lint": "tsc && rome check --apply-suggested . && rome format --write .",
+    "lint": "tsc && rome check --apply-unsafe . && rome format --write .",
     "clean": "rm -rf dist && rm -rf .turbo && rm -rf tmp"
   },
   "repository": {
@@ -40,9 +40,9 @@
     }
   },
   "devDependencies": {
-    "@types/node": "^18.15.3",
+    "@types/node": "^18.15.11",
     "colorjs.io": "^0.4.3",
-    "tsup": "^6.6.3",
+    "tsup": "^6.7.0",
     "typescript": "^5.0.2"
   }
 }

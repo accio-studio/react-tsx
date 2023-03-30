@@ -6,7 +6,7 @@
     "start": "turbo run start",
     "clean": "turbo run clean && rm -rf .turbo",
     "lint": "turbo run lint",
-    "format": "tsc && rome check --apply-suggested . && rome format --write .",
+    "format": "tsc && rome check --apply-unsafe . && rome format --write .",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "turbo lint test && turbo run build --filter='./packages/*' && changeset publish -r"
@@ -23,15 +23,15 @@
   },
   "homepage": "https://github.com/alexeiaccio/react-tsx#readme",
   "devDependencies": {
-    "@changesets/cli": "^2.26.0",
-    "@csstools/postcss-oklab-function": "^2.1.0",
+    "@changesets/cli": "^2.26.1",
+    "@csstools/postcss-oklab-function": "^2.2.0",
     "@radix-ui/colors": "^0.1.8",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
-    "rome": "^11.0.0",
-    "tailwindcss": "^3.2.7",
-    "turbo": "^1.8.3",
+    "rome": "^12.0.0",
+    "tailwindcss": "^3.3.0",
+    "turbo": "^1.8.8",
     "typescript": "^5.0.2"
   },
-  "packageManager": "pnpm@7.29.0"
+  "packageManager": "pnpm@8.1.0"
 }

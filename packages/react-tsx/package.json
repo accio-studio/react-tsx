@@ -7,7 +7,7 @@
     "test:dev": "vitest",
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
-    "lint": "tsc && rome check --apply-suggested . && rome format --write .",
+    "lint": "tsc && rome check --apply-unsafe . && rome format --write .",
     "clean": "rm -rf dist && rm -rf .turbo"
   },
   "repository": {
@@ -41,18 +41,18 @@
   },
   "devDependencies": {
     "@testing-library/react": "^14.0.0",
-    "@types/node": "^18.15.3",
-    "@types/react": "^18.0.28",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.31",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react-swc": "^3.2.0",
     "happy-dom": "^8.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rome": "^11.0.0",
-    "tsup": "^6.6.3",
+    "rome": "^12.0.0",
+    "tsup": "^6.7.0",
     "typescript": "^5.0.2",
-    "vite": "^4.2.0",
-    "vitest": "^0.29.3"
+    "vite": "^4.2.1",
+    "vitest": "^0.29.8"
   },
   "peerDependencies": {
     "react": "^18"

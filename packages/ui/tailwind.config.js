@@ -14,6 +14,8 @@ module.exports = {
         ...Object.fromEntries(Object.entries(oklch.tw_dark.amber).map(([name, color]) => [`dark-${name}`, color])),
         ...oklch.var_tw.slate,
         ...oklch.var_tw.blue,
+        ...oklch.light_a.blueA,
+        ...Object.fromEntries(Object.entries(oklch.dark_a.blueDarkA).map(([name, color]) => [`dark-${name}`, color])),
       },
     },
   },
