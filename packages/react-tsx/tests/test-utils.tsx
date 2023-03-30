@@ -11,6 +11,7 @@ type ErrorBoundaryState = {
 
 export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
+    // rome-ignore lint/nursery/noInvalidConstructorSuper: <explanation>
     super(props);
     this.state = { error: null };
   }
@@ -23,7 +24,9 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
     const { children, fallbackRender } = this.props;
     const { error } = this.state;
 
-    if (error) return fallbackRender(error);
+    if (error) {
+      return fallbackRender(error);
+    }
 
     return <>{children}</>;
   }
@@ -35,16 +38,16 @@ export function renderElement(ui: Parameters<typeof render>[0]) {
   return screen.getByTestId(id).innerHTML;
 }
 
+function ComponentWithError({ hasError }: { hasError?: boolean }) {
+  if (hasError) {
+    throw new Error("Some error");
+  }
+  return <>There is no error</>;
+}
+
 if (import.meta.vitest) {
   const { describe, test, expect, vi } = import.meta.vitest;
   vi.spyOn(console, "error").mockImplementation(() => {});
-
-  function ComponentWithError({ hasError }: { hasError?: boolean }) {
-    if (hasError) {
-      throw new Error("Some error");
-    }
-    return <>There is no error</>;
-  }
 
   describe("<ErrorBoundary />", () => {
     test("Error boundary shows children when there is not error", () => {
@@ -68,7 +71,7 @@ if (import.meta.vitest) {
             return null;
           }}
         >
-          <ComponentWithError hasError />
+          <ComponentWithError hasError={true} />
         </ErrorBoundary>,
       );
       expect(component).toBeTruthy();

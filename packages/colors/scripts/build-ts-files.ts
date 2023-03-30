@@ -393,7 +393,10 @@ async function buildOKLCH() {
       if (is_dark_a) {
         // convert to tmp/oklch/dark-a
         const scale_as_oklch_dark_a_properties = Object.entries(scale)
-          .map(([name, value]) => `  ${name}: "${new Color(value).to("oklch").toString({ precision: 5 })}",`)
+          .map(
+            ([name, value]) =>
+              `  ${name.replace(/A/, "DarkA")}: "${new Color(value).to("oklch").toString({ precision: 5 })}",`,
+          )
           .join("\n");
         const result_oklch_dark_a = `export const ${name} = {\n${scale_as_oklch_dark_a_properties}\n} as const;\n`;
         await fs.writeFile(path.join(out_dir, "oklch", "dark-a", `${name}.ts`), result_oklch_dark_a);

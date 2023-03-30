@@ -5,7 +5,7 @@
     "rules": {
       "all": true,
       "nursery": {
-        "all": true
+        "all": false
       }
     },
     "ignore": ["dist", ".next", ".turbo", "storybook-static"]

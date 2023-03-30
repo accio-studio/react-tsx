@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "Fork of @radix-ui/colors with oklch color space",
   "scripts": {
-    "build:ts": "rm -rf tmp && npx tsx scripts/build-ts-files.ts",
-    "build:css": "npx tsx scripts/build-css-modules.ts",
+    "build:ts": "rm -rf tmp && tsx scripts/build-ts-files.ts",
+    "build:css": "tsx scripts/build-css-modules.ts",
     "build": "pnpm build:ts && pnpm build:css && tsup tmp/index.ts --format cjs,esm --dts && rm -rf tmp",
     "dev": "pnpm build",
+    "test": "vitest run",
+    "test:dev": "vitest",
     "lint": "tsc && rome check --apply-unsafe . && rome format --write .",
     "clean": "rm -rf dist && rm -rf .turbo && rm -rf tmp"
   },
@@ -42,7 +44,10 @@
   "devDependencies": {
     "@types/node": "^18.15.11",
     "colorjs.io": "^0.4.3",
+    "tasuku": "^2.0.1",
     "tsup": "^6.7.0",
-    "typescript": "^5.0.2"
+    "tsx": "^3.12.6",
+    "typescript": "^5.0.2",
+    "vitest": "^0.29.8"
   }
 }

@@ -1,13 +1,19 @@
-import { useId } from "@react-aria/utils";
+import { mergeProps, useId } from "@react-aria/utils";
+import { cva } from "cva";
+import { ClassValue } from "cva/dist/types";
+import React from "react";
+import { twMerge } from "tailwind-merge";
 
 export interface GrainProps {
+  preset?: Presets;
   baseFraquency?: number;
   numOctaves?: number;
+  className?: string;
   children?: React.ReactNode;
 }
 
 export function Grain(props: GrainProps) {
-  const { children, baseFraquency = 0.65, numOctaves = 3 } = props;
+  const { children, baseFraquency = 0.65, numOctaves = 3 } = useGrainProps(props);
   const id = useId();
 
   return (
@@ -27,4 +33,33 @@ export function Grain(props: GrainProps) {
       </div>
     </>
   );
+}
+
+const presets = {
+  default: {
+    baseFraquency: 0.65,
+    numOctaves: 3,
+  },
+} as const;
+type Presets = keyof typeof presets;
+
+const grain = cva(["isolate relative", "before:absolute before:inset-0 filter contrast-150 brightness-150"], {
+  variants: {
+    preset: {
+      default: "",
+    } satisfies Record<Presets, ClassValue>,
+  },
+  defaultVariants: {
+    preset: "default",
+  },
+});
+
+export function useGrainProps(props: GrainProps) {
+  const { preset, className } = props;
+  const style: React.CSSProperties = {};
+
+  return mergeProps(props, {
+    className: twMerge(grain({ preset }), className),
+    style,
+  });
 }
