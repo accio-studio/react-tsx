@@ -1,26 +1,19 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "allowJs": true,
-    "skipLibCheck": true,
+    "lib": [
+      "es2022"
+    ],
+    "target": "es2022",
+    "module": "es2022",
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "declaration": true,
-    "incremental": false,
     "esModuleInterop": true,
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
     "types": [
       "vitest/globals",
       "vitest/importMeta"
     ]
-  },
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".turbo"
-  ]
+  }
 }

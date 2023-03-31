@@ -1,5 +1,3 @@
-"use client";
-
 import { If } from "@accio-ui/react-tsx";
 import { Button } from "@accio-ui/ui";
 import { useState } from "react";

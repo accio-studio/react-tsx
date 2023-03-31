@@ -5,9 +5,8 @@
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
-    "lint": "tsc && rome check --apply-unsafe . && rome format --write .",
+    "lint": "tsc --noEmit && rome check --apply-unsafe . && rome format --write .",
     "clean": "rm -rf dist out .turbo storybook-static",
-    "test": "// there is no test script",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "chromatic --exit-zero-on-changes"

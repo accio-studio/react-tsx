@@ -11,7 +11,6 @@ type ErrorBoundaryState = {
 
 export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
-    // rome-ignore lint/nursery/noInvalidConstructorSuper: <explanation>
     super(props);
     this.state = { error: null };
   }

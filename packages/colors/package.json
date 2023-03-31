@@ -9,7 +9,7 @@
     "dev": "pnpm build",
     "test": "vitest run",
     "test:dev": "vitest",
-    "lint": "tsc && rome check --apply-unsafe . && rome format --write .",
+    "lint": "tsc --noEmit && rome check --apply-unsafe . && rome format --write .",
     "clean": "rm -rf dist && rm -rf .turbo && rm -rf tmp"
   },
   "repository": {

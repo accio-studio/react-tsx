@@ -4,11 +4,14 @@
     "enabled": true,
     "rules": {
       "all": true,
+      "complexity": {
+        "noUselessFragments": "off"
+      },
       "nursery": {
         "all": false
       }
     },
-    "ignore": ["node_modules", "dist", ".next", ".turbo", "storybook-static"]
+    "ignore": ["dist", ".turbo"]
   },
   "formatter": {
     "enabled": true,
@@ -16,7 +19,7 @@
     "indentStyle": "space",
     "formatWithErrors": true,
     "lineWidth": 120,
-    "ignore": ["node_modules", "dist", ".next", ".turbo", "storybook-static"]
+    "ignore": ["dist", ".turbo"]
   },
   "organizeImports": {
     "enabled": true

@@ -7,7 +7,7 @@
     "test:dev": "vitest",
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
-    "lint": "tsc && rome check --apply-unsafe . && rome format --write .",
+    "lint": "tsc --noEmit && rome check --apply-unsafe . && rome format --write .",
     "clean": "rm -rf dist && rm -rf .turbo"
   },
   "repository": {

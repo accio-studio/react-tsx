@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@accio-ui/ui";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -9,7 +7,9 @@ export function ThemeSwitch() {
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div>

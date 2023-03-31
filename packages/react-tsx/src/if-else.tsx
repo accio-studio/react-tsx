@@ -35,7 +35,9 @@ const _If = forwardRef(<T extends unknown>(props: Props<T>, ref: React.Forwarded
   }
 
   if ("then" in props) {
-    if (!props.test) return Fragment(props.else);
+    if (!props.test) {
+      return Fragment(props.else);
+    }
     if (typeof props.then === "function") {
       return Fragment(props.then(props.test));
     }
@@ -43,12 +45,16 @@ const _If = forwardRef(<T extends unknown>(props: Props<T>, ref: React.Forwarded
   }
 
   if ("else" in props) {
-    if (!props.test) return Fragment(props.else);
+    if (!props.test) {
+      return Fragment(props.else);
+    }
     return Fragment(null);
   }
 
   if ("fallback" in props) {
-    if (!props.test) return Fragment(props.fallback);
+    if (!props.test) {
+      return Fragment(props.fallback);
+    }
     if ("children" in props) {
       if (typeof props.children === "function") {
         return Fragment(props.children(props.test));
@@ -75,9 +81,15 @@ const _If = forwardRef(<T extends unknown>(props: Props<T>, ref: React.Forwarded
         if (React.isValidElement(child) && child.type === Else && index < count - 1) {
           throw new Error("Else must be last child");
         }
-        if (props.test && index === 0) return createReactElement(child, ref);
-        if (!props.test && hasElseIf && index > 0 && index < count - 1) return createReactElement(child, ref);
-        if (!props.test && index === count - 1) return createReactElement(child, ref);
+        if (props.test && index === 0) {
+          return createReactElement(child, ref);
+        }
+        if (!props.test && hasElseIf && index > 0 && index < count - 1) {
+          return createReactElement(child, ref);
+        }
+        if (!props.test && index === count - 1) {
+          return createReactElement(child, ref);
+        }
         if (!hasElseIf && index > 1) {
           throw new Error("If component must have at most two children");
         }
@@ -130,7 +142,7 @@ function createReactElement(child: React.ReactNode, ref: React.Ref<unknown>) {
   return React.isValidElement(child) ? React.createElement(child.type, { ...(child.props ?? {}), ref }) : child;
 }
 
-function Fragment(...children: Array<React.ReactNode>) {
+function Fragment(...children: React.ReactNode[]) {
   return React.createElement(React.Fragment, undefined, ...children);
 }
 
