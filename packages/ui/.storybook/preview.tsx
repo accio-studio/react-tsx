@@ -31,24 +31,24 @@ const preview: Preview = {
       const { scheme } = context.globals;
       if (scheme === "light") {
         return (
-          <div className="grid w-full h-full p-12 place-items-center bg-slate2">
+          <div className="grid w-full h-full p-12 place-items-center bg-slate-2">
             <Story />
           </div>
         );
       }
       if (scheme === "dark") {
         return (
-          <div className="grid w-full h-full p-12 place-items-center dark bg-slate2">
+          <div className="grid w-full h-full p-12 place-items-center dark bg-slate-2">
             <Story />
           </div>
         );
       }
       return (
         <div className="grid w-full h-full grid-cols-2">
-          <div className="grid p-12 place-items-center bg-slate2">
+          <div className="grid p-12 place-items-center bg-slate-2">
             <Story />
           </div>
-          <div className="grid p-12 place-items-center dark bg-slate2">
+          <div className="grid p-12 place-items-center dark bg-slate-2">
             <Story />
           </div>
         </div>

@@ -46,9 +46,9 @@
   "dependencies": {
     "@accio-ui/colors": "workspace:*",
     "@accio-ui/react-tsx": "workspace:*",
-    "@react-aria/button": "^3.7.0",
-    "@react-aria/ssr": "^3.5.0",
-    "@react-aria/utils": "^3.15.0"
+    "@react-aria/button": "^3.7.1",
+    "@react-aria/ssr": "^3.6.0",
+    "@react-aria/utils": "^3.16.0"
   },
   "devDependencies": {
     "@csstools/postcss-oklab-function": "^2.2.0",
@@ -61,11 +61,11 @@
     "@storybook/testing-library": "0.0.14-next.1",
     "@testing-library/react": "^14.0.0",
     "@types/node": "^18.15.11",
-    "@types/react": "^18.0.31",
+    "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react-swc": "^3.2.0",
     "autoprefixer": "^10.4.14",
-    "chromatic": "^6.17.2",
+    "chromatic": "^6.17.3",
     "cva": "npm:class-variance-authority@^0.4.0",
     "happy-dom": "^8.9.0",
     "postcss": "^8.4.21",
@@ -74,10 +74,10 @@
     "react-dom": "^18.2.0",
     "rome": "^12.0.0",
     "storybook": "7.0.0-rc.10",
-    "tailwind-merge": "^1.11.0",
-    "tailwindcss": "^3.3.0",
+    "tailwind-merge": "^1.12.0",
+    "tailwindcss": "^3.3.1",
     "tsup": "^6.7.0",
-    "typescript": "^5.0.2",
+    "typescript": "^5.0.3",
     "vite": "^4.2.1",
     "vitest": "^0.29.8"
   },

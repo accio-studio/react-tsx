@@ -5,10 +5,10 @@ import { twMerge } from "tailwind-merge";
 
 const buttonVariants = cva(
   [
-    "bg-blue7 text-blue11",
-    "border border-solid border-blue10",
+    "bg-blue-7 text-blue-11",
+    "border border-solid border-blue-10",
     "outline-[10px] outline-offset-4 outline-transparent",
-    "focus-visible:outline-blue6",
+    "focus-visible:outline-blue-6",
   ],
   {
     variants: {
@@ -19,7 +19,7 @@ const buttonVariants = cva(
       },
       isPressed: {
         false: "",
-        true: "bg-blue6",
+        true: "bg-blue-6",
       },
     },
     defaultVariants: {

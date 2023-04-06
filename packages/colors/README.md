@@ -12,49 +12,22 @@ Fork of Radix Colors with OkLCH color space. Can be used with Tailwind CSS.
 
 ### With Tailwind CSS
 
-Simple usage, cons.: dark mode doesn't work automatically.
-
-```js
-// tailwind.config.js
-/** @type {import('@accio-ui/colors')} */
-const { oklch } = require("@accio-ui/colors");
-
-module.exports = {
-  darkMode: ["class"],
-  theme: {
-    colors: {
-      ...oklch.tw_light.amber,
-      // wich is the same as:
-      // amber1: 'oklch(0.99431 0.00334 83.05786 / <alpha-value>)',
-      // amber2: 'oklch(0.98364 0.01692 84.58640 / <alpha-value>)',
-      // ...
-      ...Object.fromEntries(
-        Object.entries(oklch.tw_dark.amber).map(([name, color]) => [
-          `dark-${name}`,
-          color,
-        ])
-      ),
-    },
-  },
-};
-```
-
 For dark mode works fine you have to add css variables to the globals.css file.
 
 ```tsx
 /* App.tsx */
 import "styles/globals.css";
-import "@accio-ui/colors/dist/css/oklch-var/blue.css";
-import "@accio-ui/colors/dist/css/oklch-var/blue-dark.css";
+import "@accio-ui/colors/dist/css/oklch/blue.css";
+
 /* wich is the same as:
 :root {
-  --amber1: 0.99431 0.00334 83.05786;
+  --blue-1: 0.99431 0.00334 83.05786;
   --amber2: 0.98364 0.01692 84.58640;
   ...
 }
 .dark {
-  --amber1: 0.19691 0.04092 78.89376;
-  --amber2: 0.21915 0.04630 74.66768;
+  --blue-1: 0.19691 0.04092 78.89376;
+  --blue-2: 0.21915 0.04630 74.66768;
   ...
 }
 */
@@ -64,17 +37,17 @@ render(<App />);
 
 and then
 
-```js
-// tailwind.config.js
-const { oklch } = require("@accio-ui/colors");
+```ts
+// tailwind.config.ts
+import * as oklch from "@accio-ui/colors";
 
-module.exports = {
+export default {
   darkMode: ["class"],
   theme: {
     colors: {
-      ...oklch.var_tw.blue,
-      // blue1: 'oklch(var(--blue1) / <alpha-value>)',
-      // blue2: 'oklch(var(--blue2) / <alpha-value>)',
+      ...oklch.blue,
+      // blue-1: 'oklch(var(--blue-1) / <alpha-value>)',
+      // blue-2: 'oklch(var(--blue-2) / <alpha-value>)',
       // ...
     },
   },

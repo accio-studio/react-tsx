@@ -15,6 +15,7 @@ out/
 # production
 build
 dist
+temp
 tmp
 
 # misc
